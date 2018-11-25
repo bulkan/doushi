@@ -1,3 +1,11 @@
 {
-	"alias": ["doushi"]
+	"version": 2,
+	"alias": ["doushi"],
+  "name": "doushi",
+  "builds": [
+    {"src": "package.json", "use": "@now/static-build"}
+  ],
+  "routes": [
+    {"src": "^/static/(.*)", "dest": "/static/$1"}
+  ]
 }
