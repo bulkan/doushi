@@ -1,10 +1,13 @@
 <template>
   <div class="home">
     <div class="grid-container">
-      <div class="grid-item" v-for="item in grid" :key="item.id" :class="$mq"
-        @mouseover="mouseover(item)"
+      <div class="grid-item font-noto" v-for="cell in grid" 
+        :key="cell.id" 
+        :class="[$mq, !cell.character ? 'light-border' : null]"
+        :id="cell.id"
+        @mouseover="mouseover(cell)"
       >
-        {{item.character}}
+        {{cell.character}}
       </div>
     </div>
   </div>
@@ -23,8 +26,8 @@ export default {
   },
 
   methods: {
-    mouseover(item) {
-      item.hover = true;
+    mouseover(cell) {
+      console.log(cell.id);
     }
   }
 }
@@ -50,9 +53,19 @@ export default {
   color: @character-color;
   display: flex;
   justify-content: center;
+  // font-family: 'M PLUS 1p', sans-serif;
   font-size: 100px;
   align-items: center;
-  transition: all 300ms;
+  transition: background-color 300ms;
+
+  &.font-noto {
+    font-weight: 200;
+    font-family: 'Noto Serif JP', sans-serif;
+  }
+
+  &.light-border {
+    border: 1px dotted lighten(@border-color, 10%);
+  }
 
   &.sm {
     font-size: 21px;

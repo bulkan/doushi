@@ -1,3 +1,9 @@
+const hiragana = {
+	r: [ 'ら', 'り', 'ろ', 'れ', 'る' ],
+	k: [ 'ka', 'ki', 'ko', 'ke', 'ku' ]
+};
+
+
 export class Store {
 	_state = {
 		grid: {}
@@ -12,7 +18,7 @@ export class Store {
 		const id = `${row},${col}`;
 		const cell = {
 			id,
-			character: id
+			character: ''
 		};
 		return [ id, cell ];
 	}
@@ -25,9 +31,18 @@ export class Store {
 			}
 		}
 	}
+
+	initialiseGrid() {
+		this.generateGrid();
+
+		['0,4', '1,4', '2,4', '3,4', '4,4'].forEach((id, i) => {
+			this._state.grid[id].character = hiragana.r[i];
+		});
+	}
 }
 
 const store = new Store();
-store.generateGrid()
+store.initialiseGrid()
+
 
 export default store;
