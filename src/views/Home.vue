@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="grid-container">
-      <div class="grid-item" v-for="item in grid" :key="item.id" 
+      <div class="grid-item" v-for="item in grid" :key="item.id" :class="$mq"
         @mouseover="mouseover(item)"
       >
         {{item.character}}
@@ -48,12 +48,16 @@ export default {
   transition: background-color ease-in .2s;
   border: 1px solid @border-color;
   color: @character-color;
-  font-size: 100px;
   display: flex;
   justify-content: center;
+  font-size: 100px;
   align-items: center;
   transition: all 300ms;
-  
+
+  &.sm {
+    font-size: 50px;
+  }
+   
   &:hover {
     background-color: @cell-hover-background-color;
     color: white;
