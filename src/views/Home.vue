@@ -55,7 +55,7 @@ export default {
   transition: all 300ms;
 
   &.sm {
-    font-size: 50px;
+    font-size: 21px;
   }
    
   &:hover {
