@@ -1,6 +1,6 @@
 {
-	"version": 2,
-	"alias": ["doushi"],
+  "version": 2,
+  "alias": ["doushi.bulkanevcimen.com"],
   "name": "doushi",
   "builds": [
     {"src": "package.json", "use": "@now/static-build"}
