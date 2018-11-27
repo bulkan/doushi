@@ -7,6 +7,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit",
+    "test:circle": "NODE_ENV=test JEST_HTML_REPORTER_OUTPUT_PATH=test-results/report.html JEST_JUNIT_OUTPUT=test-results/report.xml npm test -- --no-cache --reporters=default --reporters=jest-html-reporter --reporters=jest-junit --coverage --coverageReporters html --coverageDirectory=test-results/coverage/",
     "now-build": "vue-cli-service build"
   },
   "dependencies": {
@@ -25,6 +26,8 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
+    "jest-html-reporter": "^2.4.2",
+    "jest-junit": "^5.2.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.17"

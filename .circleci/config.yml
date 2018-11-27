@@ -1,0 +1,36 @@
+version: 2.1
+
+references:
+  node_modules_cache_key: &node_modules_cache_key
+    doushi-{{ .Environment.frontendCacheVersion }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+jobs:
+  frontend-tests:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore_cache:
+          key: *node_modules_cache_key
+      - run:
+          name: Install frontend dependencies
+          command: yarn
+      - run:
+          name: Run tests
+          command: yarn test:circle
+      - save_cache:
+          key: *node_modules_cache_key
+          paths:
+            - ./node_modules
+            - ~/.cache/yarn
+      - store_test_results:
+          path: ./test-results
+      - store_artifacts:
+          path: ./test-results
+          destination: tr1
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - frontend-tests
