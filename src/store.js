@@ -18,7 +18,10 @@ export class Store {
 		const id = `${row},${col}`;
 		const cell = {
 			id,
-			character: ''
+			row,
+			col,
+			character: '',
+			highlight: false
 		};
 		return [ id, cell ];
 	}
@@ -32,12 +35,34 @@ export class Store {
 		}
 	}
 
+	highlightRow(row) {
+		for (const cell of Object.values(this._state.grid)) {
+			if (cell.row === row) {
+				cell.highlight = true;
+			} else {
+				cell.highlight = false;
+			}
+		}
+	}
+
+	resetRowHighlight(row) {
+		for (const cell of Object.values(this._state.grid)) {
+			if(cell.row === row) {
+				cell.highlight = false;
+			}
+		}
+	}
+
+	_setHiraganaColumn(column) {
+		['0,4', '1,4', '2,4', '3,4', '4,4'].forEach((id, i) => {
+			this._state.grid[id].character = hiragana[column][i];
+		});
+	}
+
 	initialiseGrid() {
 		this.generateGrid();
 
-		['0,4', '1,4', '2,4', '3,4', '4,4'].forEach((id, i) => {
-			this._state.grid[id].character = hiragana.r[i];
-		});
+		this._setHiraganaColumn('r')
 	}
 }
 
