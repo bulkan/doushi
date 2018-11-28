@@ -28,8 +28,7 @@ export default {
 
   methods: {
     mouseover(cell) {
-      const { row } = cell;
-      store.highlightRow(row);
+      store.setCurrentRow(cell);
     },
 
     mouseout(cell) {
