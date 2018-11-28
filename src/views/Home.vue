@@ -7,8 +7,12 @@
         :id="cell.id"
         @mouseover="mouseover(cell)"
         @mouseout="mouseout(cell)"
-      >
-        {{cell.character}}
+      >  
+        <transition name="slide-fade" mode="out-in">
+          <div :key="cell.character">
+            {{ cell.character }}
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -41,6 +45,17 @@ export default {
 
 <style lang="less" scoped>
 @import '../styles/variables.less';
+
+.slide-fade-enter-active {
+  transition: all .3s ease-in;
+}
+.slide-fade-leave-active {
+  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to {
+  transform: translateY(10px);
+  opacity: 0;
+}
 
 .home {
   .grid-container {
