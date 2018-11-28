@@ -10,4 +10,12 @@ describe('Store', () => {
 			expect(Object.keys(store._state.grid)).toEqual(expectedKeys);
 		});
 	});
+
+	describe('grid behaviour', () => {
+		xit('should create a the real grid', () => {});
+		xit('should set initial verb cells', () => {});
+		xit('should set masu cells correctly based on the current row', () => {});
+		xit('should set verb cells correct based on current row', () => {});
+		xit('should reset previous verb cells', () => {});
+	});
 });
