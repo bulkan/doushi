@@ -92,6 +92,7 @@ export default {
 
       &.sm {
         font-size: 21px;
+        font-weight: bold;
       }
       
       &.hover {
