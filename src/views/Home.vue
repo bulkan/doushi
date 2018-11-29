@@ -6,6 +6,7 @@
         :class="[$mq, !cell.character ? 'light-border' : null, cell.highlight ? 'hover': null]"
         :id="cell.id"
         @mouseover="mouseover(cell)"
+        @click="handleClick(cell)"
         @mouseout="mouseout(cell)"
       >  
         <transition name="slide-fade" mode="out-in">
@@ -21,6 +22,23 @@
 <script>
 import store from '@/store';
 
+function isTouchEnabled() {
+  // return "ontouchstart" in document.documentElement;
+  const prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+  const mq = function(query) {
+    return window.matchMedia(query).matches;
+  }
+
+  if (('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch) {
+    return true;
+  }
+
+  // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+  // https://git.io/vznFH
+  const query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+  return mq(query);
+}
+
 
 export default {
   name: 'home',
@@ -31,11 +49,23 @@ export default {
   },
 
   methods: {
+    handleClick(cell) {
+      console.log('handleClick');
+      store.resetRowHighlight(cell.row);
+      store.setCurrentRow(cell);
+    },
+
     mouseover(cell) {
+      if (isTouchEnabled()) {
+        return;
+      }
       store.setCurrentRow(cell);
     },
 
     mouseout(cell) {
+      if (isTouchEnabled()) {
+        return;
+      }
       const { row } = cell;
       store.resetRowHighlight(row);
     }

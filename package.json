@@ -8,7 +8,8 @@
     "lint": "vue-cli-service lint",
     "test": "vue-cli-service test:unit",
     "test:circle": "NODE_ENV=test JEST_HTML_REPORTER_OUTPUT_PATH=test-results/report.html JEST_JUNIT_OUTPUT=test-results/report.xml npm test -- --no-cache --reporters=default --reporters=jest-html-reporter --reporters=jest-junit --coverage --coverageReporters html --coverageDirectory=test-results/coverage/",
-    "now-build": "vue-cli-service build"
+    "now-build": "vue-cli-service build",
+    "deploy": "now && now alias"
   },
   "dependencies": {
     "vue": "^2.5.17",
